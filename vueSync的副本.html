@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+    <meta charset="UTF-8">
+    <title>async/await</title>
+</head>
+<body>
+<script>
+    function func1() {
+        console.log('******');
+        return new Promise((resolve) => {
+            setTimeout(() => {
+                resolve();
+            },1000);
+        })
+    }
+
+    async function func2() {
+        console.log('1111111');
+        await func1();
+        console.log('2222222');
+    }
+
+    function func3() {
+        console.log('000000');
+        func2();
+        console.log('??????');
+    }
+
+    func3();
+</script>
+</body>
+</html>

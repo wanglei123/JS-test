@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <link rel="stylesheet" type="text/css" href="http://unpkg.com/iview/dist/styles/iview.css">
+    <script type="text/javascript" src="http://vuejs.org/js/vue.min.js"></script>
+    <script type="text/javascript" src="http://unpkg.com/iview/dist/iview.min.js"></script>
+</head>
+
+<body>
+    <div id="app">
+        <i-button @click="show">Click me!</i-button>
+        <button-counter :type="msg"></button-counter>
+    </div>
+    <script>
+    
+    Vue.component('button-counter', {
+        data: function() {
+            return {
+                count: 0
+            }
+        },
+        props: ['type'],
+        watch: {
+            type(val) {
+                console.log('这是子组件的watch', val);
+            }
+        },
+        methods:{
+        	show(){
+
+        	}
+        },
+        template:'<h3>{{ type }}</h3>',
+        beforeCreate() {
+            console.log('这个是子组件的beforeCreate');
+        },
+        created() {
+            console.log('这个是子组件的created');
+        },
+        beforeMount() {
+            console.log('这个是子组件的beforeMount');
+        },
+        mounted() {
+            console.log('这个是子组件的mounted');
+        },
+        beforeUpdate() {
+            console.log('这个是子组件的beforeUpdate');
+        },
+        updated() {
+            console.log('这个是子组件的updated');
+        },
+        activated() {
+            console.log('这个是子组件的activated');
+        },
+        deactivated() {
+            console.log('这个是子组件的deactivated');
+        },
+        beforeDestroy() {
+            console.log('这个是子组件的beforeDestroy');
+        },
+        destroyed() {
+            console.log('这个是子组件的destroyed');
+        },
+        errorCaptured() {
+            console.log('这个是子组件的errorCaptured');
+        }
+    })
+
+
+
+    const vm = new Vue({
+        el: '#app',
+        data: {
+            visible: false,
+            msg: '111'
+        },
+        methods: {
+            show: function() {
+                this.visible = true;
+            }
+        },
+        beforeCreate() {
+            console.log('这个是子父组件的beforeCreate');
+        },
+        created() {
+            console.log('这个是子父组件的created');
+        },
+        beforeMount() {
+            console.log('这个是子父组件的beforeMount');
+        },
+        mounted() {
+            console.log('这个是子父组件的mounted');
+        },
+        beforeUpdate() {
+            console.log('这个是子父组件的beforeUpdate');
+        },
+        updated() {
+            console.log('这个是子父组件的updated');
+        },
+        activated() {
+            console.log('这个是子父组件的activated');
+        },
+        deactivated() {
+            console.log('这个是子父组件的deactivated');
+        },
+        beforeDestroy() {
+            console.log('这个是子父组件的beforeDestroy');
+        },
+        destroyed() {
+            console.log('这个是子父组件的destroyed');
+        },
+        errorCaptured() {
+            console.log('这个是子父组件的errorCaptured');
+        }
+    })
+    </script>
+</body>
+
+</html>

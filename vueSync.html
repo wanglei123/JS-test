@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>sync</title>
+</head>
+
+<body>
+
+	<h1>写法1</h1>
+    <div id="parent">
+        <span>父组件</span>
+        <input type="text" v-model="parentMessage">
+        {{parentMessage}}
+        <br>
+        <!--注意下面这行用的是.sync修饰符 -->
+        <child-com :my-message.sync="parentMessage"></child-com>
+    </div>
+
+</body>
+</html>
+<script src="https://cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
+<script src="https://cdn.bootcss.com/vue/2.5.17/vue.js"></script>
+<script type="text/javascript">
+	$(document).ready(function() {
+
+		Vue.component('childCom', {
+			data(){
+				return {
+					value : ""
+				}
+			},
+            props: ['myMessage'],
+            template: `<div><span>子组件</span><input type="text" v-model="myMessage"></div>`,
+            watch: {
+                myMessage: function(val) {
+                    this.value = val;
+                    this.$emit('update:myMessage', this.value); //请注意这一行的自定义事件名为update:myMessage
+                }
+            }
+        })
+
+        var vm = new Vue({
+            el: '#parent',
+            data: {
+                parentMessage: 'hello, child!'
+            },
+            mounted(){
+                console.log(111,this.parentMessage);
+            }
+        });
+
+
+	});
+
+	
+</script>
+
+

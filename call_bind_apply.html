@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>call,apply,bind</title>
+</head>
+<body>
+  
+</body>
+<script>
+  // call,apply,bind 可以改变this指向 
+  
+  function fun(){
+    console.log(this)
+    console.log(this.name)
+  }
+
+  let dog ={
+    name: '旺财',
+    sayName(){
+      console.log('我是' + this.name)
+    },
+    eat(food1, food2){
+      console.log('我喜欢吃' + food1 + food2)
+    }
+  }
+
+  let cat = {
+    name: '喵喵'
+  }
+  // call是一个方法，是函数的方法，可以调用函数
+  // call可以改变函数中this的指向
+  // 第一个参数是要改变this的对象，后面的参数就是调用函数的参数
+  dog.eat.call(cat,'鱼','小鱼')
+  // apply和call的区别： 就是传参数形式不一样，apply是传一个数组
+  dog.eat.apply(cat,['鱼','小鱼'])
+  // bind和call的区别：bind不会调用这个函数，会把这个函数当作返回值，返回来
+  const fn = dog.eat.bind(cat,'鱼','小鱼')
+  fn();
+</script>
+</html>
