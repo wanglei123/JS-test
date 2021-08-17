@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <script>
+    // 什么是原型：任何一个对象都有一个原型对象，它可以使用自己原型上的所有属性和方法
+    let cat = {
+      name: '喵喵'
+    }
+    
+    console.log(cat.__proto__)
+    // 一个对象的 .__proto__ 就可以得到这个对象的原型
+    cat.__proto__.eat = function(){
+      console.log('吃鱼')
+    }
+
+    // 给这个对象原型添加了eat方法之后，这个对象也能使用这个eat方法。
+    cat.eat()
+
+    // 获取原型的方法
+    // 1. 通过对象的__proto__
+    // 2. 通过构造函数的prototype属性来拿到原型
+    // 3. 通过类的prototype属性来拿到原型
+
+    function Dog(name, age){
+      this.name = name;
+      this.age = age;
+    }
+
+    const dog = new Dog('旺财',2)
+
+    // 给构造函数的prototype添加属性和方法，也能在原象的型上添加
+    Dog.prototype.eat = function(){
+      console.log('吃肉')
+    }
+    dog.eat();
+
+    // 原型对象的作用： 扩展对象，比如说日期的格式化
+
+    class Fish {
+      constructor(name, age){
+        this.name = name;
+        this.age = age;
+      }
+
+    }
+
+    const fish = new Fish('鱼', 3);
+
+    Fish.prototype.eat = function(){
+      console.log('鱼吃小虾米')
+    }
+    fish.eat()
+  </script>
+</body>
+</html>
