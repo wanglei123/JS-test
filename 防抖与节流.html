@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <div>
+    <input type="text" />
+  </div>
+  <script>
+    // 防抖:用户触发事件过于频繁，我只要最后一次的操作就行。
+    // 思路： 用户操作小于0.5m,不触发事件，大于0.5m,才触发事件
+    const inp = document.querySelector('input');
+    let t = null;
+    // 用户输入间隔小于500时，会取消定时器，延迟500执行，如果大于500再执行，就会执行输出 
+    inp.oninput = function(){
+      if(t !== null){ // 
+        clearTimeout(t)
+      }
+      t = setTimeout(() => {
+        console.log(this.value)
+      }, 500)
+      
+    }
+
+
+  </script>
+  
+</body>
+</html>
