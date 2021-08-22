@@ -6,7 +6,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Document</title>
 </head>
-<body>
+<body style="height: 2000px;">
   <div>
     <input type="text" />
   </div>
@@ -14,16 +14,55 @@
     // 防抖:用户触发事件过于频繁，我只要最后一次的操作就行。
     // 思路： 用户操作小于0.5m,不触发事件，大于0.5m,才触发事件
     const inp = document.querySelector('input');
-    let t = null;
     // 用户输入间隔小于500时，会取消定时器，延迟500执行，如果大于500再执行，就会执行输出 
-    inp.oninput = function(){
-      if(t !== null){ // 
+    inp.oninput = debounce(function(){
+      console.log(this.value)
+    }, 500)
+
+
+    // 封闭防抖函数
+    function debounce(fn, delay){
+      let t = null;
+      return function(){
+        if(t !== null){ // 
         clearTimeout(t)
       }
-      t = setTimeout(() => {
-        console.log(this.value)
-      }, 500)
-      
+        t = setTimeout(() => {
+          fn.call(this); // 不call一下的话，这个执行函数的this是window
+        }, delay)
+      }
+    }
+
+    // 节流 控制高频执行次数
+    // let flag = true
+    // window.onscroll = function(){
+    //   if (flag){
+    //     setTimeout(() => {
+    //       console.log(13)
+    //       flag = true;
+    //     }, 500)
+
+    //   }
+    //   flag = false
+    // }
+
+    window.onscroll = throttle(function(){
+      console.log(123)
+    }, 500)
+
+    // 节流封装
+    function throttle(fn, delay){
+      let flag = true;
+      return function(){
+          if (flag) {
+          setTimeout(() => {
+            fn.call(this);
+            flag = true;
+          }, delay)
+
+        }
+        flag = false
+      }
     }
 
 

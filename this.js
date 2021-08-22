@@ -53,3 +53,6 @@ setTimeout(obj.callback,1000)
 //     }
 // }
 // obj.a()
+
+// TODO 普通函数谁调用 ，this就指向谁
+// TODO 箭头函授，在哪里定义 ，this指向谁

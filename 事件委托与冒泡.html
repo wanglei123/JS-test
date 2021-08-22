@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <div class="big">
+    <div class="center">
+      <div class="small"></div>
+    </div>
+  </div>
+
+  <ul>
+    <li>香蕉</li>
+    <li>苹果</li>
+    <li>桃子</li>
+  </ul>
+  
+</body>
+<script>
+
+  // 事件冒泡 从里层向外，
+  // 事件捕获 从最外层向里，一层层
+  // 默认情况下事件是在冒泡情况下触发
+
+  let big = document.querySelector('.big');
+  let center = document.querySelector('.center');
+  let small = document.querySelector('.small');
+
+  big.onclick = function(e){
+    console.log(e.target) // 这里会是点击最小的单位，点small是small的div,点center是center的div
+    console.log(this) // 这里指big
+  }
+
+  let li = document.querySelector('li')
+  let ul = document.querySelector('ul')
+
+  // 正常的删除，给每个子级一个删除事件
+  for(let i = 0;i < li.length;i++){
+    li[i].onclick = function(){
+      ul.removeChild(this)
+    }
+  }
+
+  // 利用事件委托来删除,把子级的事件委托给父级处理
+  let ul = document.querySelector('ul')
+  ul.onclick = function(e){
+    ul.removeChild(e.target)
+
+  }
+
+</script>
+</html>

@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  
+</body>
+<script>
+  // 原始类型：数值 字符串 布尔 null undefined 
+  // 引用类型： 对象
+
+  let obj = {
+    name: 'aaa',
+    age: 19,
+    grilFriend: {
+      name: '小明'
+    }
+  }
+
+
+  // 浅拷贝 只能拷贝原始数据类型，不能拷贝引用数据类型
+  function copy(obj){
+    let newObj = {}
+    for (const i in obj) {
+    newObj[i] = obj[i]
+    }
+
+    return newObj
+  }
+
+  // 深拷贝： 可以拷贝引用数据类型,用递归
+  function deepCopy(obj){
+    let newObj = {}
+    for (const i in obj) {
+      if (obj[i] instanceof Object){
+        newObj[i] = deepCopy(obj[i])
+      } else {
+        newObj[i] = obj[i]
+      }
+    
+    }
+    return newObj
+  }
+
+  // 通过JSON拷贝， json： javascript对象表示法
+
+  let str = JSON.stringify(obj)
+  let obj1 = JSON.parse(str)
+
+  const stu1 = deepCopy(obj)
+  const stu2 = deepCopy(obj)
+  stu2.grilFriend.name = '小火'
+  console.log(stu1)
+  console.log(stu2)
+  // console.log(obj)
+  // console.log(newObj)
+</script>
+</html>
