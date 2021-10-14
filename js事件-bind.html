@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  
+</body>
+<button>这是一个按钮</button>
+<script>
+
+var myObj = {
+
+specialFunction: function () {
+  console.log('this', this);
+},
+
+anotherSpecialFunction: function () {
+
+},
+
+getAsyncData: function (cb) {
+    cb();
+},
+
+render: function () {
+    // var that = this;
+    this.getAsyncData(function () {
+        this.specialFunction();
+        this.anotherSpecialFunction();
+    }.bind(this)); // 当一个函数当作回调函数传递时，传递过去的this会丢失，所以需要手动绑定当前对象给传递过去的回调函数
+}
+};
+
+myObj.render();
+
+var x = 4;
+var foo = {
+    x: 3
+}
+
+var bar = function(){
+    console.log(this.x);
+}
+
+bar(); // undefined
+
+var boundFunc = bar.bind(foo);
+
+boundFunc(); // 3
+
+var logger = {
+    x: 0,
+    updateCount: function(){
+      console.log('this', this);
+        this.x++;
+        console.log(this.x);
+    }
+}
+
+
+document.querySelector('button').addEventListener('click', logger.updateCount);
+
+
+</script>
+</html>
