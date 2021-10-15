@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  
+</body>
+
+<script>
+  // 写法一
+function m1({x =0, y =0}={}){
+return[x, y];
+}
+// 写法二
+function m2({x, y}={ x:0, y:0}){
+return[x, y];
+}
+
+console.log(m1());
+console.log(m2({}));
+
+function foo({x, y =5}={}){
+  console.log(x, y);
+}
+// 这种写法也会给Y赋默认值5，只不过只能在不传参数时生效，如果传了{}，就会报undefined
+function foo({x, y}={y:5}){
+  console.log(x, y);
+}
+foo()
+</script>
+</html>
