@@ -12,21 +12,23 @@
 <script>
   function f1(arg){
     console.log('f1', arg);
-    return arg
+    return arg + 'f1'
   }
   function f2(arg){
     console.log('f2', arg);
-    return arg
+    return arg + 'f2'
   }
   function f3(arg){
     console.log('f3', arg);
-    return arg
+    return arg + 'f3'
   }
 
 
-  f3(f2(f1('omg')))
+
 
   const res = compose(f3,f2,f1)('omg')
+
+  console.log('*********');
 
   console.log('res', res);
 
@@ -39,7 +41,13 @@
       return functs[0];
     }
 
-    return functs.reduce((a,b) => (...args) => a(b(...args)));
+    return functs.reduce((a,b) => (...args) => {
+      // console.log('args', args);
+      // console.log('b', b(...args));
+      console.log('a', a);
+      console.log('b', b);
+      return a(b(...args))
+    });
   }
 </script>
 </html>
