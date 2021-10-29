@@ -12,25 +12,28 @@
 <script>
   function f1(arg){
     console.log('f1', arg);
-    return arg + 'f1'
+    return arg
   }
   function f2(arg){
     console.log('f2', arg);
-    return arg + 'f2'
+    return arg
   }
   function f3(arg){
     console.log('f3', arg);
-    return arg + 'f3'
+    return arg
+  }
+  function f4(arg){
+    console.log('f4', arg);
+    return arg
+  }
+  function f5(arg){
+    console.log('f5', arg);
+    return arg
   }
 
+  // f3(f2(f1('omg')))
 
-
-
-  const res = compose(f3,f2,f1)('omg')
-
-  console.log('*********');
-
-  console.log('res', res);
+  const res = compose(f5,f4,f3,f2,f1)('omg')
 
   function compose(...functs){
     if (functs.length === 0){
@@ -41,12 +44,10 @@
       return functs[0];
     }
 
-    return functs.reduce((a,b) => (...args) => {
-      // console.log('args', args);
-      // console.log('b', b(...args));
-      console.log('a', a);
-      console.log('b', b);
-      return a(b(...args))
+    return functs.reduce((a,b,index) => {
+      console.log('a',a,index); // b,a,log
+      console.log('b',b,index); // b,a,log
+      return (...args) => a(b(...args))
     });
   }
 </script>
