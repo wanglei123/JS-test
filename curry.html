@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  
+</body>
+<script>
+
+  function curry(fn){
+    return function(first) {
+      return function(second){
+        return fn(first,second);
+      }
+    }
+  }
+
+  const name = function(first,last){
+    return first + last
+  }
+  const newFn = curry(name)
+  console.log(newFn('first')('last'));
+
+
+</script>
+</html>
