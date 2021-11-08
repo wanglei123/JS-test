@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  
+</body>
+<script>
+  class SingeDog {
+    show(){
+      console.log('我是一个单例对象');
+    }
+    static instance(){
+      if (!SingeDog.instance){
+        SingeDog.instance = new SingeDog();
+      }
+      return SingeDog.instance
+    }
+  }
+  SingeDog.getInstance = (function(){
+    let instance = null;
+    console.log('123');
+    return function(){
+      if(!instance){
+        instance = new SingeDog()
+      }
+      return instance
+    }
+  })()
+
+  console.log(SingeDog.getInstance());
+
+  // s1 = SingeDog.getInstance()
+  // s2 = SingeDog.getInstance()
+  // console.log(s1 === s2);
+</script>
+</html>

@@ -13,7 +13,9 @@
       name: '喵喵'
     }
     
-    console.log(cat.__proto__)
+    console.log('cat的原型对象',cat.__proto__)
+    // console.log('null的原型对象明',null.__proto__); // 会报错
+    console.log('Object的原型对象明',Object.prototype); 
     // 一个对象的 .__proto__ 就可以得到这个对象的原型
     cat.__proto__.eat = function(){
       console.log('吃鱼')
@@ -39,6 +41,8 @@
       console.log('吃肉')
     }
     dog.eat();
+
+    console.log('dog的原型',Dog.prototype);
 
     // 原型对象的作用： 扩展对象，比如说日期的格式化
 
